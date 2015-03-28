@@ -36,9 +36,12 @@ module GoogleBooks
       parameters['startIndex'] = options[:count] * (options[:page] - 1)
       parameters['maxResults'] = options[:count]
       parameters['key'] = options[:api_key] if options[:api_key]
-      parameters['orderBy'] = 'newest' if options[:order_by].eql?('newest')
+      # parameters['orderBy'] = 'newest' if options[:order_by].eql?('newest')
+      parameters['orderBy'] = 'relevance'
       parameters['country'] = options[:country] if options[:country]
-
+      parameters['langRestrict'] = 'en'
+      parameters['printType'] = 'all'
+      parameters['projection'] = 'lite'
       Response.new(get(url.to_s))
     end
 
